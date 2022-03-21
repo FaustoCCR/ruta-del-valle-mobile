@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Hosteria Ruta del Valle</string>
+
+    <!--login -->
+    <string name="title">Bienvenido</string>
+    <string name="subititle">Hostería Ruta del Valle</string>
+    <string name="placeholder_user">Usuario</string>
+    <string name="placeholder_pass">Contraseña</string>
+    <string name="login">Iniciar Sesión</string>
+    <string name="register">Crear Cuenta</string>
+</resources>
