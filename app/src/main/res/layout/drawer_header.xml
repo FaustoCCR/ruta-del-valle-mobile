@@ -31,7 +31,7 @@
             android:layout_weight="60"
             android:text="@string/header"
             android:textColor="@color/white"
-            android:fontFamily="sans-serif-smallcaps"/>
+            android:fontFamily="@font/source_sans_pro_bold"/>
 
     </LinearLayout>
 

@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity"
-    android:background="#223065">
+    android:background="@color/background"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,7 +27,7 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-smallcaps"
+            android:fontFamily="@font/source_sans_pro_bold"
             android:text="@string/title"
             android:textAlignment="center"
             android:textColor="@color/white"
@@ -40,7 +41,7 @@
             android:text="@string/subititle"
             android:textColor="@color/white"
             android:textAlignment="center"
-            android:fontFamily="sans-serif-smallcaps"/>
+            android:fontFamily="@font/source_sans_pro_semibold"/>
     </LinearLayout>
 
     <LinearLayout
@@ -65,13 +66,14 @@
                 android:layout_marginBottom="15dp"
                 android:background="@drawable/field_border"
                 android:ems="10"
-                android:fontFamily="sans-serif-smallcaps"
+                android:fontFamily="@font/source_sans_pro_regular"
                 android:hint="@string/placeholder_user"
                 android:inputType="textPersonName"
                 android:padding="15dp"
                 android:textColor="@color/input"
                 android:textColorHint="@color/input"
-                android:textSize="16dp" />
+                android:textSize="16dp"
+                />
 
             <EditText
                 android:id="@+id/editTextTextPassword"
@@ -80,7 +82,7 @@
                 android:layout_marginBottom="15dp"
                 android:background="@drawable/field_border"
                 android:ems="10"
-                android:fontFamily="sans-serif-smallcaps"
+                android:fontFamily="@font/source_sans_pro_regular"
                 android:hint="@string/placeholder_pass"
                 android:inputType="textPassword"
                 android:padding="15dp"
@@ -94,10 +96,9 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_style"
                 android:backgroundTint="#FD6C88"
-                android:fontFamily="sans-serif-smallcaps"
+                android:fontFamily="@font/source_sans_pro_bold"
                 android:text="@string/login"
                 android:textSize="12dp"
-                android:textStyle="bold"
                 android:onClick="ingresar"
                 android:textColor="@color/white"/>
         </LinearLayout>
@@ -149,11 +150,11 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_style"
                 android:backgroundTint="#F3A2B1"
-                android:fontFamily="sans-serif-smallcaps"
+                android:fontFamily="@font/source_sans_pro_bold"
                 android:text="@string/register"
                 android:textSize="12dp"
-                android:textStyle="bold"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:onClick="crearCuenta"/>
 
         </LinearLayout>
 

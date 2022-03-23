@@ -9,6 +9,21 @@
     <string name="login">Iniciar Sesión</string>
     <string name="register">Crear Cuenta</string>
 
+    <!-- Register -->
+    <string name="title_re">Crear Cuenta</string>
+    <string name="ph_DNI">No.Cédula</string>
+    <string name="ph_nombre">Nombre</string>
+    <string name="ph_email">Email</string>
+    <string name="ph_telefono">Teléfono</string>
+    <string name="ph_username">Nombre de Usuario</string>
+    <string name="ph_password">Contraseña</string>
+    <string name="bt_signup">Registrarse</string>
+    <string name="start_message">¡Empecemos!</string>
+    <string name="alreadyaccount">¿Ya posee una cuenta?</string>
+    <string name="message_register">Crea una cuenta para acceder a nuestro servicios</string>
+
+
+
     <!-- NavigationDrawer -->
     <string name="header">Ruta Del Valle</string>
     <string name="close">close</string>

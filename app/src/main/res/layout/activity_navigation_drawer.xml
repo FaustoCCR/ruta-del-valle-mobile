@@ -29,6 +29,8 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         android:background="#ede6e8"
+        app:itemTextAppearance="@font/source_sans_pro_regular"
+        app:subheaderTextAppearance="@font/source_sans_pro_bold"
         />
 
 
