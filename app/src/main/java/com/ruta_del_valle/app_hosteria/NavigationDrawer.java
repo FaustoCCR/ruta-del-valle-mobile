@@ -15,6 +15,7 @@ import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
 import com.ruta_del_valle.app_hosteria.fragments.MainFragment;
+import com.ruta_del_valle.app_hosteria.fragments.ServiceFragment;
 
 public class NavigationDrawer extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -50,6 +51,9 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.container, new MainFragment());
         fragmentTransaction.commit();
+        setTitle("Home");
+
+
 
 
         //titulo del toolbar
@@ -73,6 +77,13 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
                 fragmentManager = getSupportFragmentManager();
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.container, new MainFragment());
+                fragmentTransaction.commit();
+                break;
+            case R.id.bell:
+                //cargar fragment servicio
+                fragmentManager = getSupportFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.container, new ServiceFragment());
                 fragmentTransaction.commit();
                 break;
 
