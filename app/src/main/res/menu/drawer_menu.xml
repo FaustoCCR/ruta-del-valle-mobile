@@ -10,7 +10,7 @@
                 >
             </item>
             <item
-                android:id="@+id/bell"
+                android:id="@+id/info"
                 android:icon="@drawable/ic_info"
                 android:title="Servicios">
             </item>

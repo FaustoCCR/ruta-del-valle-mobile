@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -28,6 +29,9 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
 
+    //Fragments creados
+    Fragment fragmentPrincipal, fragmentServicio;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,15 +50,15 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
         actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
         actionBarDrawerToggle.syncState();
 
+        //instanciamos los fragments con sus Clases
+        fragmentPrincipal = new MainFragment();
+        fragmentServicio = new ServiceFragment();
+
         //cargar fragment principal
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.container, new MainFragment());
+        fragmentTransaction.add(R.id.container, fragmentPrincipal);
         fragmentTransaction.commit();
-        setTitle("Home");
-
-
-
 
         //titulo del toolbar
         setTitle("Home");
@@ -70,24 +74,27 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
         una vez que una de sus opciones sea seleccionada*/
         drawerLayout.closeDrawer(GravityCompat.START);
 
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
         switch (item.getItemId()) {
 
             case R.id.home:
                 //cargar fragment principal
-                fragmentManager = getSupportFragmentManager();
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.container, new MainFragment());
-                fragmentTransaction.commit();
+                //fragmentManager = getSupportFragmentManager();
+                //fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.container, fragmentPrincipal);
+                //fragmentTransaction.commit();
                 break;
-            case R.id.bell:
+            case R.id.info:
                 //cargar fragment servicio
-                fragmentManager = getSupportFragmentManager();
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.container, new ServiceFragment());
-                fragmentTransaction.commit();
+                fragmentTransaction.replace(R.id.container, fragmentServicio);
                 break;
 
         }
+
+        //concretamos la transaccion de los fragments
+        fragmentTransaction.commit();
+
         /*cambiamos el título de acuerdo  los seleccionado*/
         toolbar.setTitle(item.getTitle());
 

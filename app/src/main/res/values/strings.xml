@@ -32,16 +32,17 @@
     <string name="saludo">Bienvenidos Home</string>
 
     <!-- Services -->
+    <string name="titleServices">Servicios</string>
     <string name="Comida">Comidas</string>
     <string name="Piscina">Piscina</string>
     <string name="Espacios">Espacio deportivo</string>
-    <string name="Estacionamiento">Estacionamiento</string>
+    <string name="Estacionamiento">Parqueadero</string>
     <string name="Recepcion">Recepcion</string>
     <string name="Limpieza">Limpieza</string>
     <string name="General">General</string>
     <string name="ComidasRes">Dispone de diferentes consumible, cuenta con desayuno, almuerzo, y merienda, además de una variedad de bebidas y refrescos</string>
     <string name="PiscinaRes">Cuenta con una piscina, se mantiene abierta todo el día</string>
-    <string name="EspaciosRes">Tiene canchas para jugar Futbol y Volly</string>
+    <string name="EspaciosRes">Tiene canchas para jugar Futbol y Volley</string>
     <string name="EstacionamientoRes">Estacionamiento unicamente para clientes, cuenta con vigilancia</string>
     <string name="RecepcionRes">Servicio de recepción todo el día y consulta de información</string>
     <string name="LimpiezaRes">La limpieza se realiza de forma díaria</string>

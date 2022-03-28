@@ -41,7 +41,8 @@
             android:text="@string/subititle"
             android:textColor="@color/white"
             android:textAlignment="center"
-            android:fontFamily="@font/source_sans_pro_semibold"/>
+            android:fontFamily="@font/source_sans_pro_semibold"
+            />
     </LinearLayout>
 
     <LinearLayout
