@@ -15,7 +15,6 @@ import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
 import com.ruta_del_valle.app_hosteria.fragments.MainFragment;
-import com.ruta_del_valle.app_hosteria.fragments.ServiceFragment;
 
 public class NavigationDrawer extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -81,11 +80,11 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
                 break;
             case R.id.bell:
                 //cargar fragment servicio
-                fragmentManager = getSupportFragmentManager();
+                /*fragmentManager = getSupportFragmentManager();
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.container, new ServiceFragment());
                 fragmentTransaction.commit();
-                break;
+                break;*/
 
         }
         /*cambiamos el título de acuerdo  los seleccionado*/
