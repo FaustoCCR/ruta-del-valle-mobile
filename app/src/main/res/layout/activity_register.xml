@@ -61,11 +61,10 @@
                 android:padding="15dp"
                 android:textColor="@color/input"
                 android:textColorHint="@color/input"
-                android:textSize="16dp"
-                />
+                android:textSize="16dp" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName"
+                android:id="@+id/editTName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
@@ -123,7 +122,7 @@
                 android:textColorHint="@color/input"
                 android:textSize="16dp" />
             <EditText
-                android:id="@+id/editTextTextPassword"
+                android:id="@+id/editTPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
@@ -138,7 +137,7 @@
                 android:textSize="16dp" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/buttonRegister"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_style"
