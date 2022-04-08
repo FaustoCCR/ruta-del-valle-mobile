@@ -29,7 +29,7 @@
     <string name="open">open</string>
 
     <!-- Main Fragment -->
-    <string name="saludo">Bienvenidos Home</string>
+    <string name="mainFragmentTitle">Habitaciones</string>
 
     <!-- Services -->
     <string name="titleServices">Servicios</string>
@@ -47,5 +47,7 @@
     <string name="RecepcionRes">Servicio de recepción todo el día y consulta de información</string>
     <string name="LimpiezaRes">La limpieza se realiza de forma díaria</string>
     <string name="GeneralRes">Habitaciones espaciosas y comodas, servicio al cuarto</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

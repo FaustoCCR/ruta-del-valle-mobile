@@ -30,7 +30,7 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
     FragmentTransaction fragmentTransaction;
 
     //Fragments creados
-    Fragment fragmentPrincipal, fragmentServicio;
+    Fragment fragmentPrincipal, fragmentServicio, fragmentHabitaciones;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
