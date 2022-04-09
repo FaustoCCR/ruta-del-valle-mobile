@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import com.google.android.material.navigation.NavigationView;
 import com.ruta_del_valle.app_hosteria.fragments.DetalleHabitacion_Fragment;
 import com.ruta_del_valle.app_hosteria.fragments.MainFragment;
+import com.ruta_del_valle.app_hosteria.fragments.PerfilFragment;
 import com.ruta_del_valle.app_hosteria.fragments.ServiceFragment;
 import com.ruta_del_valle.app_hosteria.fragments.bridge.BridgeHabitacionToDetalle;
 import com.ruta_del_valle.app_hosteria.rest_api.model.Habitacion;
@@ -33,7 +34,7 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
     FragmentTransaction fragmentTransaction;
 
     //Fragments creados
-    Fragment fragmentPrincipal, fragmentServicio, fragmentHabitaciones;
+    Fragment fragmentPrincipal, fragmentServicio, fragmentPerfil;
 
 
     //variables del FragmentDetalleHabitacion
@@ -60,6 +61,7 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
         //instanciamos los fragments con sus Clases
         fragmentPrincipal = new MainFragment();
         fragmentServicio = new ServiceFragment();
+        fragmentPerfil = new PerfilFragment();
 
         //cargar fragment principal
         fragmentManager = getSupportFragmentManager();
@@ -96,6 +98,8 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
                 //cargar fragment servicio
                 fragmentTransaction.replace(R.id.container, fragmentServicio);
                 break;
+            case R.id.profile:
+                fragmentTransaction.replace(R.id.container,fragmentPerfil);
 
         }
 
