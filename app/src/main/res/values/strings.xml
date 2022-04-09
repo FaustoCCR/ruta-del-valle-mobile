@@ -50,4 +50,11 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!-- Fragment Detalle de la Habitación -->
+    <string name="tagDetalle">Detalles de la habitación</string>
+    <string name="tagCosto">Costo/Noche</string>
+    <string name="buttonReservarAhora">Reservar Ahora</string>
+    <string name="tagPlanta">Planta:</string>
+    <string name="tagMax_adultos">Max Adultos:</string>
+    <string name="tagMax_ninos">Max Niños:</string>
 </resources>

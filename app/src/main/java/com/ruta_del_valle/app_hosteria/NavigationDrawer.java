@@ -15,10 +15,13 @@ import android.view.Gravity;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
+import com.ruta_del_valle.app_hosteria.fragments.DetalleHabitacion_Fragment;
 import com.ruta_del_valle.app_hosteria.fragments.MainFragment;
 import com.ruta_del_valle.app_hosteria.fragments.ServiceFragment;
+import com.ruta_del_valle.app_hosteria.fragments.bridge.BridgeHabitacionToDetalle;
+import com.ruta_del_valle.app_hosteria.rest_api.model.Habitacion;
 
-public class NavigationDrawer extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class NavigationDrawer extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, BridgeHabitacionToDetalle {
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
@@ -31,6 +34,10 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
 
     //Fragments creados
     Fragment fragmentPrincipal, fragmentServicio, fragmentHabitaciones;
+
+
+    //variables del FragmentDetalleHabitacion
+    DetalleHabitacion_Fragment detalleHabitacion_fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,5 +106,24 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
         toolbar.setTitle(item.getTitle());
 
         return  false;
+    }
+
+    //Sirve como puente para enviar información entre Fragments
+    @Override
+    public void enviarHabitacion(Habitacion habitacion) {
+
+        //proceso para enviar los datos
+        detalleHabitacion_fragment = new DetalleHabitacion_Fragment();
+        //objeto bundle para transportar la informacion
+        Bundle bundleEnvio = new Bundle();
+        //enviamos el objeto serializado
+        bundleEnvio.putSerializable("objeto",habitacion);
+        detalleHabitacion_fragment.setArguments(bundleEnvio);
+
+        //abrimos el fragment
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.container,detalleHabitacion_fragment);
+        fragmentTransaction.addToBackStack(null);//permite regresar al anterior fragment
+        fragmentTransaction.commit();
     }
 }

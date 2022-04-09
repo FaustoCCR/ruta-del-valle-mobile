@@ -20,12 +20,12 @@
     <item android:title="Secundario">
         <menu>
             <item
-                android:id="@+id/home2"
+                android:id="@+id/profile"
                 android:icon="@drawable/ic_user"
                 android:title="Perfil">
             </item>
             <item
-                android:id="@+id/bell2"
+                android:id="@+id/settings"
                 android:icon="@drawable/ic_settings"
                 android:title="Ajustes">
             </item>
