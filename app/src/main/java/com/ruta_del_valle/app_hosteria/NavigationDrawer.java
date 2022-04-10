@@ -97,9 +97,11 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
             case R.id.info:
                 //cargar fragment servicio
                 fragmentTransaction.replace(R.id.container, fragmentServicio);
+                fragmentTransaction.addToBackStack(null);//permite regresar al anterior fragment
                 break;
             case R.id.profile:
                 fragmentTransaction.replace(R.id.container,fragmentPerfil);
+                fragmentTransaction.addToBackStack(null);//permite regresar al anterior fragment
 
         }
 

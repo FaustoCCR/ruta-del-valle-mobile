@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
 
     private MyApiAdapter myApiAdapter;
 
+    public static String usernameToSend = "";
+
     EditText etUsername, etPassword;
     Button btnSignin;
 
@@ -75,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
                     if (response.isSuccessful()) {
 
                         Toast.makeText(MainActivity.this, "Bienvenido " + response.body().getUsername(), Toast.LENGTH_SHORT).show();
+                        usernameToSend = response.body().getUsername();
                         cleanFields();
                         ingresar();
                     } else {

@@ -57,4 +57,7 @@
     <string name="tagPlanta">Planta:</string>
     <string name="tagMax_adultos">Max Adultos:</string>
     <string name="tagMax_ninos">Max Niños:</string>
+
+    <!-- Profile Fragment -->
+    <string name="btnEditar">Editar Perfil</string>
 </resources>

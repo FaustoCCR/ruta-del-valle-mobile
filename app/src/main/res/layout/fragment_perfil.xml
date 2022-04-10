@@ -12,32 +12,35 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3"
+        android:background="#2F428C"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:orientation="vertical"
-        android:padding="10dp"
-        android:background="#2F428C">
+        android:padding="10dp">
 
         <ImageView
             android:id="@+id/imageView6"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="7"
+            android:focusableInTouchMode="false"
             android:src="@drawable/ic_person" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/eteNombre"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="3"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:fontFamily="@font/source_sans_pro_regular"
             android:background="@drawable/field_border"
             android:backgroundTint="#DBD4E2"
-            android:padding="15dp"
+            android:ems="10"
+            android:fontFamily="@font/source_sans_pro_regular"
             android:hint="@string/ph_nombre"
-            android:textColor="@color/input"
-            android:textAlignment="center"/>
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:padding="15dp"
+            android:textAlignment="center"
+            android:textColor="@color/input" />
     </LinearLayout>
 
     <LinearLayout
@@ -63,19 +66,19 @@
                 android:layout_marginRight="30dp"/>
 
             <EditText
-                android:id="@+id/editTextNumber"
+                android:id="@+id/eteDni"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:ems="10"
-                android:inputType="number"
                 android:background="@drawable/field_border"
-                android:padding="15dp"
-                android:textSize="16dp"
+                android:ems="10"
                 android:fontFamily="@font/source_sans_pro_regular"
                 android:hint="@string/ph_DNI"
+                android:inputType="number"
+                android:padding="15dp"
                 android:textColor="@color/input"
-                android:textColorHint="@color/input"/>
+                android:textColorHint="@color/input"
+                android:textSize="16dp" />
 
         </LinearLayout>
 
@@ -95,20 +98,20 @@
                 android:src="@drawable/ic_user" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName3"
+                android:id="@+id/eteUsername"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName"
-                tools:ignore="TouchTargetSizeCheck"
                 android:background="@drawable/field_border"
-                android:padding="15dp"
-                android:textSize="16dp"
+                android:ems="10"
                 android:fontFamily="@font/source_sans_pro_regular"
                 android:hint="@string/ph_username"
+                android:inputType="textPersonName"
+                android:padding="15dp"
                 android:textColor="@color/input"
-                android:textColorHint="@color/input"/>
+                android:textColorHint="@color/input"
+                android:textSize="16dp"
+                tools:ignore="TouchTargetSizeCheck" />
         </LinearLayout>
 
         <LinearLayout
@@ -127,19 +130,19 @@
                 android:src="@drawable/ic_email" />
 
             <EditText
-                android:id="@+id/editTextTextEmailAddress"
+                android:id="@+id/eteEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textEmailAddress"
                 android:background="@drawable/field_border"
-                android:padding="15dp"
-                android:textSize="16dp"
+                android:ems="10"
                 android:fontFamily="@font/source_sans_pro_regular"
                 android:hint="@string/ph_email"
+                android:inputType="textEmailAddress"
+                android:padding="15dp"
                 android:textColor="@color/input"
-                android:textColorHint="@color/input"/>
+                android:textColorHint="@color/input"
+                android:textSize="16dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -158,19 +161,19 @@
                 android:src="@drawable/ic_phone" />
 
             <EditText
-                android:id="@+id/editTextPhone"
+                android:id="@+id/eteTelefono"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:ems="10"
-                android:inputType="phone"
                 android:background="@drawable/field_border"
-                android:padding="15dp"
-                android:textSize="16dp"
+                android:ems="10"
                 android:fontFamily="@font/source_sans_pro_regular"
                 android:hint="@string/ph_telefono"
+                android:inputType="phone"
+                android:padding="15dp"
                 android:textColor="@color/input"
-                android:textColorHint="@color/input"/>
+                android:textColorHint="@color/input"
+                android:textSize="16dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -188,20 +191,33 @@
                 android:src="@drawable/ic_key" />
 
             <EditText
-                android:id="@+id/editTextTextPassword"
+                android:id="@+id/etePassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPassword"
                 android:background="@drawable/field_border"
-                android:padding="15dp"
-                android:textSize="16dp"
+                android:ems="10"
                 android:fontFamily="@font/source_sans_pro_regular"
                 android:hint="@string/ph_password"
+                android:inputType="textPassword"
+                android:padding="15dp"
                 android:textColor="@color/input"
-                android:textColorHint="@color/input"/>
+                android:textColorHint="@color/input"
+                android:textSize="16dp" />
         </LinearLayout>
+
+        <Button
+            android:id="@+id/btnEditar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"
+            android:background="@drawable/button_style"
+            android:backgroundTint="#FD6C88"
+            android:fontFamily="@font/source_sans_pro_bold"
+            android:text="@string/btnEditar"
+            android:textColor="@color/white"
+            android:textSize="12dp"
+            android:visibility="visible" />
 
     </LinearLayout>
 </LinearLayout>
