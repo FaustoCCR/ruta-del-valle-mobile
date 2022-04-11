@@ -76,4 +76,6 @@
     <string name="btConfirmarReserva">Confirmar Reserva</string>
     <string name="tagFechaEntrada">Fecha Entrada</string>
     <string name="tagFechaSalida">Fecha Salida</string>
+    <string name="tagTotalPago">Pago Total:</string>
+    <string name="phTvTotalPago">$0.00</string>
 </resources>

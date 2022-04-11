@@ -101,7 +101,7 @@ public class DetalleHabitacion_Fragment extends Fragment implements View.OnClick
         switch (view.getId()){
 
             case R.id.btnReservarAhora:
-                transportDetailsHb();
+                sendDetailsHb();
                 fragmentTransaction.replace(R.id.container,fragmentReserva);
                 fragmentTransaction.addToBackStack(null);//permite regresar al anterior fragment
                 fragmentTransaction.commit();
@@ -110,9 +110,10 @@ public class DetalleHabitacion_Fragment extends Fragment implements View.OnClick
 
     }
 
-    public void transportDetailsHb(){
+    public void sendDetailsHb(){
+
         Bundle bundle = new Bundle();
         bundle.putSerializable("detailhb",habitacion);
-        getParentFragmentManager().setFragmentResult("key",bundle);
+        fragmentReserva.setArguments(bundle);
     }
 }

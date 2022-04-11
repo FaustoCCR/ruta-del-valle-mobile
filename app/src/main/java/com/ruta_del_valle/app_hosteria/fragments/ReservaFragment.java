@@ -21,19 +21,24 @@ import android.widget.TextView;
 import com.ruta_del_valle.app_hosteria.R;
 import com.ruta_del_valle.app_hosteria.rest_api.model.Habitacion;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 
 public class ReservaFragment extends Fragment implements View.OnClickListener {
 
-    TextView tvNroHabitacion,tvTipoHabitacion,tvPrecioN;
+    TextView tvNroHabitacion,tvTipoHabitacion,tvPrecioN,tvPagoTotal;
     EditText editTextFechaEntrada,editTextFechaSalida;
     ImageButton btnFechaEntrada, btnFechaSalida;
     DatePicker dpFechaEntrada, dpFechaSalida;
 
     Calendar calendar;
 
+    Habitacion habitacion;
 
     public ReservaFragment() {
         // Required empty public constructor
@@ -57,22 +62,18 @@ public class ReservaFragment extends Fragment implements View.OnClickListener {
         btnFechaSalida = view.findViewById(R.id.iBFechaSalida);
         dpFechaEntrada = view.findViewById(R.id.datePicker1);
         dpFechaSalida = view.findViewById(R.id.datePicker2);
-
+        tvPagoTotal = view.findViewById(R.id.tvTotalPago);
 
         //Escucha del bundle recibido
-        getParentFragmentManager().setFragmentResultListener("key", this, new FragmentResultListener() {
-            @Override
-            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
 
-                Habitacion habitacion = (Habitacion) result.getSerializable("detailhb");
-
-                tvNroHabitacion.setText("Habitación Nº"+String.valueOf(habitacion.getNum_habitacion()));
-                tvTipoHabitacion.setText(habitacion.getTipo_habitacion());
-                tvPrecioN.setText("$" + String.valueOf(habitacion.getCosto_noche())+ "/n");
-
-
-            }
-        });
+        Bundle objetoHabitacion = getArguments();
+        habitacion = null;
+        if (objetoHabitacion!=null){
+            habitacion = (Habitacion) objetoHabitacion.getSerializable("detailhb");
+            tvNroHabitacion.setText("Habitación Nº"+String.valueOf(habitacion.getNum_habitacion()));
+            tvTipoHabitacion.setText(habitacion.getTipo_habitacion());
+            tvPrecioN.setText("$" + String.valueOf(habitacion.getCosto_noche())+ "/n");
+        }
         //----------------------------//
         btnFechaEntrada.setOnClickListener(this);
         btnFechaSalida.setOnClickListener(this);
@@ -89,6 +90,7 @@ public class ReservaFragment extends Fragment implements View.OnClickListener {
                 dpFechaEntrada.setVisibility(View.GONE);
                 checkPickerEntradaToChangePickerSalida();
                 //setMinDateSalida();
+                tvPagoTotal.setText(String.valueOf(calcularPrecioFinal()));
 
             }
         });
@@ -100,6 +102,7 @@ public class ReservaFragment extends Fragment implements View.OnClickListener {
             public void onDateChanged(DatePicker datePicker, int i, int i1, int i2) {
                 editTextFechaSalida.setText(getFechaDatePickerSalida());
                 dpFechaSalida.setVisibility(View.GONE);
+                tvPagoTotal.setText(String.valueOf(calcularPrecioFinal()));
             }
         });
 
@@ -109,6 +112,8 @@ public class ReservaFragment extends Fragment implements View.OnClickListener {
         //---------------
         editTextFechaEntrada.setText(getFechaDatePickerEntrada());
         editTextFechaSalida.setText(getFechaDatePickerSalida());
+
+        tvPagoTotal.setText(String.valueOf(calcularPrecioFinal()));
 
         return view;
     }
@@ -169,6 +174,44 @@ public class ReservaFragment extends Fragment implements View.OnClickListener {
 
         datePicker.setVisibility(View.VISIBLE);
 
+
+    }
+
+    private double calcularPrecioFinal(){
+
+        String fechaEntrada = editTextFechaEntrada.getText().toString();
+        String fechaSalida = editTextFechaSalida.getText().toString();
+        Date dateEntrada = convertStringToDate(fechaEntrada);
+        Date dateSalida = convertStringToDate(fechaSalida);
+
+        long difference = diferenceBetweenDates(dateEntrada,dateSalida);
+
+        double costoN = habitacion.getCosto_noche();
+
+        double precioFinal = difference * costoN;
+
+        return precioFinal;
+    }
+
+    private long diferenceBetweenDates(Date entrada, Date salida){
+
+        long diff = salida.getTime() - entrada.getTime();
+        TimeUnit time = TimeUnit.DAYS;
+        long difference = time.convert(diff,TimeUnit.MILLISECONDS);
+        return difference;
+    }
+
+    private Date convertStringToDate(String date){
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+        Date fecha = new Date();
+        try {
+            fecha = sdf.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return fecha;
 
     }
 

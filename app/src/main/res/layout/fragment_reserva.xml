@@ -235,7 +235,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
 
             <TextView
                 android:id="@+id/textView34"
@@ -261,17 +262,42 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/source_sans_pro_semibold"
+                android:text="@string/tagTotalPago"
+                android:textColor="@color/input"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvTotalPago"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/source_sans_pro_regular"
+                android:text="@string/phTvTotalPago"
+                android:textSize="16sp"
+                android:padding="15dp"/>
+        </LinearLayout>
+
         <Button
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/btConfirmarReserva"
+            android:layout_marginTop="20dp"
             android:background="@drawable/button_style"
             android:backgroundTint="#FD6C88"
-            android:textColor="@color/white"
             android:fontFamily="@font/source_sans_pro_bold"
+            android:text="@string/btConfirmarReserva"
 
-            android:layout_marginTop="20dp"/>
+            android:textColor="@color/white" />
 
     </LinearLayout>
 
