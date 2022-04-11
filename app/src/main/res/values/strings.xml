@@ -60,4 +60,15 @@
 
     <!-- Profile Fragment -->
     <string name="btnEditar">Editar Perfil</string>
+    
+    <!-- Fragment Reserva -->
+    <string name="tagNroHabitacion">Habitación Nº</string>
+    <string name="tagTipoHabitacion">Tipo Habitación</string>
+    <string name="tagPrecioNoche">Precio/n.</string>
+    <string name="tagDetalleReserva">Detalles</string>
+    <string name="tagEntrada">Entrada</string>
+    <string name="tagSalida">Salida</string>
+    <string name="hintMaxAdultos">Num. adultos</string>
+    <string name="hintMaxNinos">Num. niños</string>
+    <string name="btnCalendar">Calendario</string>
 </resources>

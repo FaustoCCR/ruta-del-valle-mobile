@@ -3,19 +3,28 @@ package com.ruta_del_valle.app_hosteria.fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.ruta_del_valle.app_hosteria.R;
 import com.ruta_del_valle.app_hosteria.rest_api.model.Habitacion;
 
-public class DetalleHabitacion_Fragment extends Fragment {
+public class DetalleHabitacion_Fragment extends Fragment implements View.OnClickListener {
 
     TextView tipo_habitacion, detalles, planta, max_adultos, max_ninos, costo;
+    Button btnReservarAhora;
 
+    //varibles para la navegación entre fragments
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
+
+    Fragment fragmentReserva;
     public DetalleHabitacion_Fragment() {
         // Required empty public constructor
     }
@@ -33,6 +42,14 @@ public class DetalleHabitacion_Fragment extends Fragment {
         max_adultos = view.findViewById(R.id.textVMax_a);
         max_ninos = view.findViewById(R.id.textVMax_n);
         costo = view.findViewById(R.id.textVCosto);
+        btnReservarAhora = view.findViewById(R.id.btnReservarAhora);
+        btnReservarAhora.setOnClickListener(this);
+
+
+        //instancia del Fragment
+        fragmentReserva = new ReservaFragment();
+
+        //fragmentManager = getActivity().getSupportFragmentManager();
 
 
         //Objeto bundle para recibir el objeto enviado por argumentos
@@ -69,6 +86,23 @@ public class DetalleHabitacion_Fragment extends Fragment {
         }
 
         return presentation;
+
+    }
+
+    @Override
+    public void onClick(View view) {
+
+        fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+
+
+        switch (view.getId()){
+
+            case R.id.btnReservarAhora:
+                fragmentTransaction.replace(R.id.container,fragmentReserva);
+                fragmentTransaction.addToBackStack(null);//permite regresar al anterior fragment
+                fragmentTransaction.commit();
+                break;
+        }
 
     }
 }
