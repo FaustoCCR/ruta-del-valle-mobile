@@ -41,6 +41,9 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.7'
     /* ----------------- */
 
+    /*Comunicacion entre fragments*/
+    implementation 'androidx.fragment:fragment:1.4.1'
+
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

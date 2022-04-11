@@ -27,6 +27,7 @@
                 android:layout_height="41dp"
                 android:layout_marginRight="15dp"
                 android:src="@drawable/ic_hotel"
+
                 />
 
             <TextView
@@ -41,7 +42,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/textView23"
+            android:id="@+id/tvNroHabitacion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/tagNroHabitacion"
@@ -49,7 +50,7 @@
             android:fontFamily="@font/source_sans_pro_regular"/>
 
         <TextView
-            android:id="@+id/textView26"
+            android:id="@+id/tvTipoHabitacion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/tagTipoHabitacion"
@@ -57,7 +58,7 @@
             android:fontFamily="@font/source_sans_pro_regular"/>
 
         <TextView
-            android:id="@+id/textView32"
+            android:id="@+id/tvCostoN"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/tagPrecioNoche"

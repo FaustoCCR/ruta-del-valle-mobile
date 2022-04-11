@@ -3,9 +3,11 @@ package com.ruta_del_valle.app_hosteria.fragments;
 import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentResultListener;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
@@ -14,8 +16,10 @@ import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.ruta_del_valle.app_hosteria.R;
+import com.ruta_del_valle.app_hosteria.rest_api.model.Habitacion;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -23,6 +27,7 @@ import java.util.Date;
 
 public class ReservaFragment extends Fragment implements View.OnClickListener {
 
+    TextView tvNroHabitacion,tvTipoHabitacion,tvPrecioN;
     EditText editTextFechaEntrada,editTextFechaSalida;
     ImageButton btnFechaEntrada, btnFechaSalida;
     DatePicker dpFechaEntrada, dpFechaSalida;
@@ -43,6 +48,9 @@ public class ReservaFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_reserva, container, false);
 
         /*Conectamos con los componentes gráficos*/
+        tvNroHabitacion = view.findViewById(R.id.tvNroHabitacion);
+        tvTipoHabitacion = view.findViewById(R.id.tvTipoHabitacion);
+        tvPrecioN = view.findViewById(R.id.tvCostoN);
         editTextFechaEntrada = view.findViewById(R.id.etFechaEntrada);
         editTextFechaSalida = view.findViewById(R.id.etFechaSalida);
         btnFechaEntrada = view.findViewById(R.id.iBFechaEntrada);
@@ -50,6 +58,22 @@ public class ReservaFragment extends Fragment implements View.OnClickListener {
         dpFechaEntrada = view.findViewById(R.id.datePicker1);
         dpFechaSalida = view.findViewById(R.id.datePicker2);
 
+
+        //Escucha del bundle recibido
+        getParentFragmentManager().setFragmentResultListener("key", this, new FragmentResultListener() {
+            @Override
+            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
+
+                Habitacion habitacion = (Habitacion) result.getSerializable("detailhb");
+
+                tvNroHabitacion.setText("Habitación Nº"+String.valueOf(habitacion.getNum_habitacion()));
+                tvTipoHabitacion.setText(habitacion.getTipo_habitacion());
+                tvPrecioN.setText("$" + String.valueOf(habitacion.getCosto_noche())+ "/n");
+
+
+            }
+        });
+        //----------------------------//
         btnFechaEntrada.setOnClickListener(this);
         btnFechaSalida.setOnClickListener(this);
 

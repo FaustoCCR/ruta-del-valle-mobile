@@ -24,6 +24,9 @@ public class DetalleHabitacion_Fragment extends Fragment implements View.OnClick
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
 
+    //Detalles de la habitacion
+    Habitacion habitacion;
+
     Fragment fragmentReserva;
     public DetalleHabitacion_Fragment() {
         // Required empty public constructor
@@ -54,7 +57,7 @@ public class DetalleHabitacion_Fragment extends Fragment implements View.OnClick
 
         //Objeto bundle para recibir el objeto enviado por argumentos
         Bundle objetoHabitacion = getArguments();
-        Habitacion habitacion = null;
+        habitacion = null;
         //validamos si existen argumentos enviados
         if (objetoHabitacion != null) {
 
@@ -98,11 +101,18 @@ public class DetalleHabitacion_Fragment extends Fragment implements View.OnClick
         switch (view.getId()){
 
             case R.id.btnReservarAhora:
+                transportDetailsHb();
                 fragmentTransaction.replace(R.id.container,fragmentReserva);
                 fragmentTransaction.addToBackStack(null);//permite regresar al anterior fragment
                 fragmentTransaction.commit();
                 break;
         }
 
+    }
+
+    public void transportDetailsHb(){
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("detailhb",habitacion);
+        getParentFragmentManager().setFragmentResult("key",bundle);
     }
 }
