@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragments.ReservaFragment">
+    tools:context=".fragments.ReservaFragment"
+    android:paddingTop="60dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="15dp">
 
@@ -23,10 +23,10 @@
 
             <ImageView
                 android:id="@+id/imageView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_hotel"
+                android:layout_width="50dp"
+                android:layout_height="41dp"
                 android:layout_marginRight="15dp"
+                android:src="@drawable/ic_hotel"
                 />
 
             <TextView
@@ -36,7 +36,8 @@
                 android:text="@string/subititle"
                 android:fontFamily="@font/source_sans_pro_semibold"
                 android:textSize="18sp"
-                android:textColor="@color/input"/>
+                android:textColor="@color/input"
+                android:layout_gravity="center"/>
         </LinearLayout>
 
         <TextView
@@ -68,16 +69,25 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="7"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="15dp">
+
         <DatePicker
             android:id="@+id/datePicker1"
-            android:layout_width="500dp"
+            android:layout_width="300dp"
             android:layout_height="400dp"
             android:visibility="gone"
             android:headerBackground="@color/input"
+            android:layout_gravity="center"
+            />
+        <DatePicker
+            android:id="@+id/datePicker2"
+            android:layout_width="300dp"
+            android:layout_height="400dp"
+            android:visibility="gone"
+            android:headerBackground="@color/input"
+            android:layout_gravity="center"
             />
 
         <TextView
@@ -118,7 +128,7 @@
 
 
                     <EditText
-                        android:id="@+id/editTextDate"
+                        android:id="@+id/etFechaEntrada"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="9"
@@ -127,13 +137,15 @@
                         android:fontFamily="@font/source_sans_pro_semibold"
                         android:inputType="date"
                         android:minHeight="48dp"
-                        android:padding="10dp" />
+                        android:padding="10dp"
+                        android:hint="@string/tagFechaEntrada"
+                        android:textSize="15sp"/>
 
                     <ImageButton
-                        android:id="@+id/imageButtonDate1"
+                        android:id="@+id/iBFechaEntrada"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
+
                         android:contentDescription="@string/btnCalendar"
                         android:minWidth="48dp"
                         android:src="@drawable/ic_calendar"
@@ -164,7 +176,7 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/editTextDate2"
+                        android:id="@+id/etFechaSalida"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="9"
@@ -173,13 +185,14 @@
                         android:minHeight="48dp"
                         android:fontFamily="@font/source_sans_pro_semibold"
                         android:inputType="date"
-                        android:padding="10dp" />
+                        android:padding="10dp"
+                        android:hint="@string/tagFechaSalida"
+                        android:textSize="15sp"/>
 
                     <ImageButton
-                        android:id="@+id/imageButton2"
+                        android:id="@+id/iBFechaSalida"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
                         android:contentDescription="@string/btnCalendar"
                         android:src="@drawable/ic_calendar"
                         tools:ignore="TouchTargetSizeCheck" />
@@ -197,13 +210,13 @@
 
             <TextView
                 android:id="@+id/textView33"
-                android:layout_width="wrap_content"
+                android:layout_width="68dp"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:layout_marginRight="10dp"
                 android:fontFamily="@font/source_sans_pro_semibold"
-                android:textSize="16sp"
+                android:text="@string/tagAdultos"
                 android:textColor="@color/input"
-                android:layout_marginRight="10dp"/>
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editTextNumber"
@@ -225,9 +238,9 @@
 
             <TextView
                 android:id="@+id/textView34"
-                android:layout_width="wrap_content"
+                android:layout_width="69dp"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:text="@string/tagNinos"
                 android:fontFamily="@font/source_sans_pro_semibold"
                 android:textSize="16sp"
                 android:textColor="@color/input"
@@ -244,7 +257,21 @@
                 android:textSize="16sp"
                 android:fontFamily="@font/source_sans_pro_regular"
                 android:hint="@string/hintMaxNinos"/>
+
         </LinearLayout>
 
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btConfirmarReserva"
+            android:background="@drawable/button_style"
+            android:backgroundTint="#FD6C88"
+            android:textColor="@color/white"
+            android:fontFamily="@font/source_sans_pro_bold"
+
+            android:layout_marginTop="20dp"/>
+
     </LinearLayout>
+
 </LinearLayout>

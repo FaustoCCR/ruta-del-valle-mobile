@@ -70,5 +70,10 @@
     <string name="tagSalida">Salida</string>
     <string name="hintMaxAdultos">Num. adultos</string>
     <string name="hintMaxNinos">Num. niños</string>
+    <string name="tagAdultos">Adultos:</string>
+    <string name="tagNinos">Niños:</string>
     <string name="btnCalendar">Calendario</string>
+    <string name="btConfirmarReserva">Confirmar Reserva</string>
+    <string name="tagFechaEntrada">Fecha Entrada</string>
+    <string name="tagFechaSalida">Fecha Salida</string>
 </resources>
