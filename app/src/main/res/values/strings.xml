@@ -68,8 +68,10 @@
     <string name="tagDetalleReserva">Detalles</string>
     <string name="tagEntrada">Entrada</string>
     <string name="tagSalida">Salida</string>
-    <string name="hintMaxAdultos">Num. adultos</string>
-    <string name="hintMaxNinos">Num. niños</string>
+    <!--<string name="hintMaxAdultos">Num. adultos</string>
+    <string name="hintMaxNinos">Num. niños</string>-->
+    <string name="defvalueAdultos">1</string>
+    <string name="defvalueNinos">0</string>
     <string name="tagAdultos">Adultos:</string>
     <string name="tagNinos">Niños:</string>
     <string name="btnCalendar">Calendario</string>

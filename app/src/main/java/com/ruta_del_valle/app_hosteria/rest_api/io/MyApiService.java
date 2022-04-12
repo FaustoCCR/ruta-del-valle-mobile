@@ -4,6 +4,7 @@ import com.ruta_del_valle.app_hosteria.rest_api.model.Habitacion;
 import com.ruta_del_valle.app_hosteria.rest_api.model.LoginUsuario;
 import com.ruta_del_valle.app_hosteria.rest_api.model.Mensaje;
 import com.ruta_del_valle.app_hosteria.rest_api.model.NuevoUsuario;
+import com.ruta_del_valle.app_hosteria.rest_api.model.Reserva;
 import com.ruta_del_valle.app_hosteria.rest_api.security.JwtDto;
 
 import java.util.List;
@@ -17,6 +18,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface MyApiService {
 
@@ -26,8 +28,9 @@ public interface MyApiService {
     @POST("auth/nuevo")
     Call<Mensaje> newUser(@Body NuevoUsuario nuevoUsuario);
 
+    //consulta de habitaciones disponibles
     @GET("api/habitaciones")
-    Call<List<Habitacion>> getHabitaciones();
+    Call<List<Habitacion>> getHabitaciones(@Query("estado") String estado);
 
     @GET("api/users/usuario/{username}")
     Call<NuevoUsuario> getUsuariobyUsername(@Path("username") String username);
@@ -35,6 +38,11 @@ public interface MyApiService {
     //Actualizar usuario
     @PUT("api/users/{id_user}")
     Call<NuevoUsuario> updateUsuario(@Path("id_user")long id_user, @Body NuevoUsuario usuario);
+
+    //Crear Reserva
+    @POST("api/reserva")
+    Call<Reserva> createReserva(@Body Reserva reserva);
+
 
 
 }

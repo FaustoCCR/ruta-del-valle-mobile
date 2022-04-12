@@ -65,9 +65,9 @@ public class MainFragment extends Fragment {
     }
 
     protected void searchData(){
-
+        String valueOfFilter = "Disponible";
         MyApiService myApiService = myApiAdapter.getApiService();
-        Call<List<Habitacion>> call = myApiService.getHabitaciones();
+        Call<List<Habitacion>> call = myApiService.getHabitaciones(valueOfFilter);
         call.enqueue(new Callback<List<Habitacion>>() {
             @Override
             public void onResponse(Call<List<Habitacion>> call, Response<List<Habitacion>> response) {
