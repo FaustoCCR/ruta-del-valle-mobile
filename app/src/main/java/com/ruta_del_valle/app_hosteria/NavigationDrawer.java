@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import com.google.android.material.navigation.NavigationView;
 import com.ruta_del_valle.app_hosteria.fragments.DetalleHabitacion_Fragment;
 import com.ruta_del_valle.app_hosteria.fragments.MainFragment;
+import com.ruta_del_valle.app_hosteria.fragments.MisReservas_Fragment;
 import com.ruta_del_valle.app_hosteria.fragments.PerfilFragment;
 import com.ruta_del_valle.app_hosteria.fragments.ServiceFragment;
 import com.ruta_del_valle.app_hosteria.fragments.bridge.BridgeHabitacionToDetalle;
@@ -34,7 +35,7 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
     FragmentTransaction fragmentTransaction;
 
     //Fragments creados
-    Fragment fragmentPrincipal, fragmentServicio, fragmentPerfil;
+    Fragment fragmentPrincipal, fragmentServicio, fragmentPerfil, fragmentMisReservas;
 
 
     //variables del FragmentDetalleHabitacion
@@ -62,6 +63,7 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
         fragmentPrincipal = new MainFragment();
         fragmentServicio = new ServiceFragment();
         fragmentPerfil = new PerfilFragment();
+        fragmentMisReservas = new MisReservas_Fragment();
 
         //cargar fragment principal
         fragmentManager = getSupportFragmentManager();
@@ -102,6 +104,11 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
             case R.id.profile:
                 fragmentTransaction.replace(R.id.container,fragmentPerfil);
                 fragmentTransaction.addToBackStack(null);//permite regresar al anterior fragment
+                break;
+            case R.id.myReservations:
+                fragmentTransaction.replace(R.id.container,fragmentMisReservas);
+                fragmentTransaction.addToBackStack(null);
+            break;
 
         }
 

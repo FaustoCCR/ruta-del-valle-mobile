@@ -3,6 +3,7 @@ package com.ruta_del_valle.app_hosteria.rest_api.io;
 import com.ruta_del_valle.app_hosteria.rest_api.model.Habitacion;
 import com.ruta_del_valle.app_hosteria.rest_api.model.LoginUsuario;
 import com.ruta_del_valle.app_hosteria.rest_api.model.Mensaje;
+import com.ruta_del_valle.app_hosteria.rest_api.model.MiReserva;
 import com.ruta_del_valle.app_hosteria.rest_api.model.NuevoUsuario;
 import com.ruta_del_valle.app_hosteria.rest_api.model.Reserva;
 import com.ruta_del_valle.app_hosteria.rest_api.security.JwtDto;
@@ -42,6 +43,11 @@ public interface MyApiService {
     //Crear Reserva
     @POST("api/reserva")
     Call<Reserva> createReserva(@Body Reserva reserva);
+
+
+    //Mis Reservas
+    @GET("api/reserva/usuario/{username}")
+    Call<List<MiReserva>> infoReservaByUsername(@Path("username") String username);
 
 
 
