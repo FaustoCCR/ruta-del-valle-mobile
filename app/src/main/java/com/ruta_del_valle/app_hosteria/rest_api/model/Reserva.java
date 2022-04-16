@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Reserva {
 
-    private String username;
+    private String cliente;
     private long id_habitacion;
     private Date fecha_reserva;
     private String fecha_ingreso;
@@ -15,8 +15,8 @@ public class Reserva {
     private String observaciones;
     private String estado;
 
-    public Reserva(String username, long id_habitacion, String fecha_ingreso, String fecha_salida, int adultos, int ninos, double costo_alojamiento, String observaciones, String estado) {
-        this.username = username;
+    public Reserva(String cliente, long id_habitacion, String fecha_ingreso, String fecha_salida, int adultos, int ninos, double costo_alojamiento, String observaciones, String estado) {
+        this.cliente = cliente;
         this.id_habitacion = id_habitacion;
         this.fecha_ingreso = fecha_ingreso;
         this.fecha_salida = fecha_salida;
@@ -27,8 +27,8 @@ public class Reserva {
         this.estado = estado;
     }
 
-    public Reserva(String username, long id_habitacion, Date fecha_reserva, String fecha_ingreso, String fecha_salida, int adultos, int ninos, double costo_alojamiento, String observaciones, String estado) {
-        this.username = username;
+    public Reserva(String cliente, long id_habitacion, Date fecha_reserva, String fecha_ingreso, String fecha_salida, int adultos, int ninos, double costo_alojamiento, String observaciones, String estado) {
+        this.cliente = cliente;
         this.id_habitacion = id_habitacion;
         this.fecha_reserva = fecha_reserva;
         this.fecha_ingreso = fecha_ingreso;
@@ -40,14 +40,13 @@ public class Reserva {
         this.estado = estado;
     }
 
-    public String getUsername() {
-        return username;
+    public String getCliente() {
+        return cliente;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setCliente(String cliente) {
+        this.cliente = cliente;
     }
-
     public long getId_habitacion() {
         return id_habitacion;
     }
