@@ -2,10 +2,15 @@ package com.ruta_del_valle.app_hosteria.fragments;
 
 import static com.ruta_del_valle.app_hosteria.MainActivity.usernameToSend;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.graphics.Paint;
+import android.graphics.pdf.PdfDocument;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -251,6 +256,7 @@ public class ReservaFragment extends Fragment implements View.OnClickListener {
 
     protected void createReserva(){
 
+
         String username = usernameToSend;
         long id_habitacion = habitacion.getId_habitacion();
         String fecha_ingreso = dateToAPI(editTextFechaEntrada.getText().toString());
@@ -289,7 +295,7 @@ public class ReservaFragment extends Fragment implements View.OnClickListener {
                         if (response.isSuccessful()){
 
                             Toast.makeText(getContext(),"Reserva Realizada con éxito", Toast.LENGTH_LONG).show();
-
+                            redirectTo();//nos redirigimos a la página principal
                         }else {
                             System.out.println(response.errorBody());
                         }
@@ -330,4 +336,12 @@ public class ReservaFragment extends Fragment implements View.OnClickListener {
             break;
         }
     }
+
+    private void redirectTo(){
+
+        getParentFragmentManager().popBackStack();
+        getParentFragmentManager().popBackStack();
+
+    }
+
 }
