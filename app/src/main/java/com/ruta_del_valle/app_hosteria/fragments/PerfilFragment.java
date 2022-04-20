@@ -126,7 +126,7 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
                     @Override
                     public void onResponse(Call<NuevoUsuario> call, Response<NuevoUsuario> response) {
                         if (response.isSuccessful()) {
-                            Toast.makeText(getContext(), "Usurio Actualizado", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Usuario Actualizado correctamente", Toast.LENGTH_SHORT).show();
                         } else {
                             System.out.println(response.errorBody());
                         }
@@ -150,6 +150,25 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        updateData();
+        etCedula.setError(null);
+        etTelefono.setError(null);
+        String tele= etTelefono.getText().toString();
+        String nume= etCedula.getText().toString();
+
+
+        if (nume.length()  >= 11) {
+            etCedula.setError("Cedula fuera de rango");
+            etCedula.requestFocus();
+        } else {
+            if (tele.length()  >= 11){
+                etTelefono.setError("Telefono fuera de rango");
+                etTelefono.requestFocus();
+            }else{
+                updateData();
+            }
+
+
+
+        }
     }
 }

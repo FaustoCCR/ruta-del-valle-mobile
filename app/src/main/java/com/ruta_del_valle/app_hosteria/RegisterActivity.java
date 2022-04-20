@@ -1,18 +1,19 @@
 package com.ruta_del_valle.app_hosteria;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.ruta_del_valle.app_hosteria.rest_api.io.MyApiAdapter;
 import com.ruta_del_valle.app_hosteria.rest_api.io.MyApiService;
 import com.ruta_del_valle.app_hosteria.rest_api.model.Mensaje;
 import com.ruta_del_valle.app_hosteria.rest_api.model.NuevoUsuario;
+
+import javax.xml.validation.Validator;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,6 +25,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private EditText etDni, etNombre, etEmail, etTelefono, etUsername, etpassword;
     private Button btRegister;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +44,28 @@ public class RegisterActivity extends AppCompatActivity {
         btRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                callRegisterService();
+                etDni.setError(null);
+                etTelefono.setError(null);
+                String tele= etTelefono.getText().toString();
+                String nume= etDni.getText().toString();
+
+
+                if (nume.length()  >= 11) {
+                    etDni.setError("Cedula fuera de rango");
+                    etDni.requestFocus();
+                } else {
+                    if (tele.length()  >= 11){
+                        etTelefono.setError("Telefono fuera de rango");
+                        etTelefono.requestFocus();
+                    }else{
+                        callRegisterService();
+                    }
+
+
+
+                }
+
+
             }
         });
 
@@ -54,42 +77,62 @@ public class RegisterActivity extends AppCompatActivity {
 
     protected void callRegisterService(){
 
-        String dni = etDni.getText().toString();
+        String dni = etDni.getText().toString().trim();
         String nombre = etNombre.getText().toString();
         String email = etEmail.getText().toString();
-        String telefono = etTelefono.getText().toString();
+        String telefono = etTelefono.getText().toString().trim();
         String username = etUsername.getText().toString();
         String password = etpassword.getText().toString();
 
-        if (!dni.isEmpty() && !nombre.isEmpty() && !email.isEmpty() && !telefono.isEmpty() &&
-        !username.isEmpty() && !password.isEmpty()){
-
-            NuevoUsuario nuevoUsuario = new NuevoUsuario(dni,nombre,email,telefono,username,password,"user");
-            MyApiService myApiService = myApiAdapter.getApiService();
-            Call<Mensaje> call = myApiService.newUser(nuevoUsuario);
-            call.enqueue(new Callback<Mensaje>() {
-                @Override
-                public void onResponse(Call<Mensaje> call, Response<Mensaje> response) {
-                    if (response.isSuccessful()){
-                        Toast.makeText(getApplicationContext(), response.body().getMensaje(), Toast.LENGTH_SHORT).show();
-                        cleanFields();
-                        finish();
+        if (dni.isEmpty() ){
+            Toast.makeText(this.getApplicationContext(),"Campo cedula Vacio",Toast.LENGTH_SHORT).show();
+        }else{
+                if (nombre.isEmpty()){
+                    Toast.makeText(this.getApplicationContext(),"Campo nombre Vacio",Toast.LENGTH_SHORT).show();
+                }else{
+                    if (email.isEmpty()){
+                        Toast.makeText(this.getApplicationContext(),"Campo email Vacio",Toast.LENGTH_SHORT).show();
                     }else{
-                        Toast.makeText(getApplicationContext(),String.valueOf(response.errorBody()),Toast.LENGTH_SHORT).show();
-                        System.out.println(response.errorBody());
+                        if (telefono.isEmpty() ){
+                            Toast.makeText(this.getApplicationContext(),"Campo telefono Vacio",Toast.LENGTH_SHORT).show();
+                        }else{
+                            if (username.isEmpty()){
+                                Toast.makeText(this.getApplicationContext(),"Campo username Vacio",Toast.LENGTH_SHORT).show();
+                            }else{
+                                if (password.isEmpty()){
+                                    Toast.makeText(this.getApplicationContext(),"Campo password Vacio",Toast.LENGTH_SHORT).show();
+                                }else{
+                                    NuevoUsuario nuevoUsuario = new NuevoUsuario(dni,nombre,email,telefono,username,password,"user");
+                                    MyApiService myApiService = myApiAdapter.getApiService();
+                                    Call<Mensaje> call = myApiService.newUser(nuevoUsuario);
+                                    call.enqueue(new Callback<Mensaje>() {
+                                        @Override
+                                        public void onResponse(Call<Mensaje> call, Response<Mensaje> response) {
+                                            if (response.isSuccessful()){
+                                                Toast.makeText(getApplicationContext(), response.body().getMensaje(), Toast.LENGTH_SHORT).show();
+                                                cleanFields();
+                                                finish();
+                                            }else{
+                                                Toast.makeText(getApplicationContext(),String.valueOf(response.errorBody()),Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(getApplicationContext(), "Se produjo un error al guardar", Toast.LENGTH_SHORT).show();
+                                                System.out.println(response.errorBody());
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<Mensaje> call, Throwable t) {
+                                            System.out.println(t.getMessage());
+                                        }
+                                    });
+
+                                }
+                            }
+                        }
                     }
                 }
-
-                @Override
-                public void onFailure(Call<Mensaje> call, Throwable t) {
-                    System.out.println(t.getMessage());
-                }
-            });
-
-        }else{
-            Toast.makeText(this.getApplicationContext(), "Ingrese los datos solicitados", Toast.LENGTH_SHORT).show();
         }
     }
+
 
     private void cleanFields(){
         etDni.setText("");
