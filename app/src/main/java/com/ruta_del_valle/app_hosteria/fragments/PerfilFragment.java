@@ -6,7 +6,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,14 +26,12 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
 
     //variables para Retrofit
     private MyApiAdapter myApiAdapter;
+    //variable
     private String usernameReceived;
 
     //componentes de la vista
     EditText etNombre,etCedula,etUsername,etEmail,etTelefono,etPassword;
     Button btEditar;
-
-    //variable id_user
-    long id_user;
 
     //Objeto Usuario
     NuevoUsuario usuarioResponse;
@@ -126,7 +123,12 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
                     @Override
                     public void onResponse(Call<NuevoUsuario> call, Response<NuevoUsuario> response) {
                         if (response.isSuccessful()) {
-                            Toast.makeText(getContext(), "Usuario Actualizado correctamente", Toast.LENGTH_SHORT).show();
+
+
+
+                            Toast.makeText(getContext(), "Usuario Actualizado", Toast.LENGTH_SHORT).show();
+                            usernameToSend = response.body().getUsername();
+
                         } else {
                             System.out.println(response.errorBody());
                         }

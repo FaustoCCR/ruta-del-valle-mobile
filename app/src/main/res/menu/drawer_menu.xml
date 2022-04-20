@@ -25,9 +25,9 @@
                 android:title="Perfil">
             </item>
             <item
-                android:id="@+id/settings"
-                android:icon="@drawable/ic_settings"
-                android:title="Ajustes">
+                android:id="@+id/myReservations"
+                android:icon="@drawable/ic_assignment"
+                android:title="Mis Reservas">
             </item>
 
         </menu>

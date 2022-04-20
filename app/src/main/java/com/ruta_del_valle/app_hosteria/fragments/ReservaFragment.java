@@ -1,42 +1,57 @@
 package com.ruta_del_valle.app_hosteria.fragments;
 
+import static com.ruta_del_valle.app_hosteria.MainActivity.usernameToSend;
+
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.graphics.Paint;
+import android.graphics.pdf.PdfDocument;
 import android.os.Build;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentResultListener;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ruta_del_valle.app_hosteria.R;
+import com.ruta_del_valle.app_hosteria.rest_api.io.MyApiAdapter;
+import com.ruta_del_valle.app_hosteria.rest_api.io.MyApiService;
 import com.ruta_del_valle.app_hosteria.rest_api.model.Habitacion;
+import com.ruta_del_valle.app_hosteria.rest_api.model.Reserva;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class ReservaFragment extends Fragment implements View.OnClickListener {
 
     TextView tvNroHabitacion,tvTipoHabitacion,tvPrecioN,tvPagoTotal;
-    EditText editTextFechaEntrada,editTextFechaSalida;
+    EditText editTextFechaEntrada,editTextFechaSalida,etAdultos,etNinos;
     ImageButton btnFechaEntrada, btnFechaSalida;
     DatePicker dpFechaEntrada, dpFechaSalida;
+    Button btReservar;
 
     Calendar calendar;
+
+    //Variables para Retrofit
+    private MyApiAdapter myApiAdapter;
 
     Habitacion habitacion;
 
@@ -52,6 +67,9 @@ public class ReservaFragment extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_reserva, container, false);
 
+
+        //Instancia del adapterAPI
+        myApiAdapter = new MyApiAdapter();
         /*Conectamos con los componentes gráficos*/
         tvNroHabitacion = view.findViewById(R.id.tvNroHabitacion);
         tvTipoHabitacion = view.findViewById(R.id.tvTipoHabitacion);
@@ -62,7 +80,10 @@ public class ReservaFragment extends Fragment implements View.OnClickListener {
         btnFechaSalida = view.findViewById(R.id.iBFechaSalida);
         dpFechaEntrada = view.findViewById(R.id.datePicker1);
         dpFechaSalida = view.findViewById(R.id.datePicker2);
+        etAdultos = view.findViewById(R.id.etNumAdultos);
+        etNinos = view.findViewById(R.id.etNumNinos);
         tvPagoTotal = view.findViewById(R.id.tvTotalPago);
+        btReservar = view.findViewById(R.id.btnConfirmReserva);
 
         //Escucha del bundle recibido
 
@@ -77,6 +98,7 @@ public class ReservaFragment extends Fragment implements View.OnClickListener {
         //----------------------------//
         btnFechaEntrada.setOnClickListener(this);
         btnFechaSalida.setOnClickListener(this);
+        btReservar.setOnClickListener(this);
 
         calendar = Calendar.getInstance();
 
@@ -90,7 +112,9 @@ public class ReservaFragment extends Fragment implements View.OnClickListener {
                 dpFechaEntrada.setVisibility(View.GONE);
                 checkPickerEntradaToChangePickerSalida();
                 //setMinDateSalida();
-                tvPagoTotal.setText(String.valueOf(calcularPrecioFinal()));
+                if (!editTextFechaSalida.getText().toString().isEmpty()){
+                    tvPagoTotal.setText(String.valueOf(calcularPrecioFinal()));
+                }
 
             }
         });
@@ -115,6 +139,8 @@ public class ReservaFragment extends Fragment implements View.OnClickListener {
 
         tvPagoTotal.setText(String.valueOf(calcularPrecioFinal()));
 
+        editTextFechaEntrada.setEnabled(false);
+        editTextFechaSalida.setEnabled(false);
         return view;
     }
 
@@ -203,7 +229,7 @@ public class ReservaFragment extends Fragment implements View.OnClickListener {
 
     private Date convertStringToDate(String date){
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Date fecha = new Date();
         try {
             fecha = sdf.parse(date);
@@ -212,6 +238,83 @@ public class ReservaFragment extends Fragment implements View.OnClickListener {
         }
 
         return fecha;
+
+    }
+
+    private String dateToAPI(String date){
+
+        String[] fechaArray = date.split("/");
+
+        String dia = fechaArray[0];
+        String mes = fechaArray[1];
+        String anio = fechaArray[2];
+        String dateToCast = anio + "-"+ mes +"-"+dia;
+
+        return dateToCast;
+
+    }
+
+    protected void createReserva(){
+
+
+        String username = usernameToSend;
+        long id_habitacion = habitacion.getId_habitacion();
+        String fecha_ingreso = dateToAPI(editTextFechaEntrada.getText().toString());
+        String fecha_salida = dateToAPI(editTextFechaSalida.getText().toString());
+
+
+        System.out.println(fecha_ingreso);
+        System.out.println(fecha_salida);
+        System.out.println(convertStringToDate(editTextFechaEntrada.getText().toString()));
+
+
+        String observaciones = "";
+        String estado = "Reservada";
+        double costo_alojamiento = Double.parseDouble(tvPagoTotal.getText().toString());
+
+        if (!etAdultos.getText().toString().isEmpty()){
+
+            int ninos;
+            if (etNinos.getText().toString().isEmpty()){
+
+                ninos = 0;
+            }else{
+                ninos = Integer.parseInt(etNinos.getText().toString());
+            }
+            int adultos = Integer.parseInt(etAdultos.getText().toString());
+
+            if (adultos<= habitacion.getMax_adultos() && ninos<=habitacion.getMax_ninos()){
+
+                Reserva reserva = new Reserva(username,id_habitacion,fecha_ingreso,fecha_salida,adultos,ninos,costo_alojamiento,observaciones,estado);
+
+                MyApiService myApiService = myApiAdapter.getApiService();
+                Call<Reserva> call = myApiService.createReserva(reserva);
+                call.enqueue(new Callback<Reserva>() {
+                    @Override
+                    public void onResponse(Call<Reserva> call, Response<Reserva> response) {
+                        if (response.isSuccessful()){
+
+                            Toast.makeText(getContext(),"Reserva Realizada con éxito", Toast.LENGTH_LONG).show();
+                            redirectTo();//nos redirigimos a la página principal
+                        }else {
+                            System.out.println(response.errorBody());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Reserva> call, Throwable t) {
+
+                    }
+                });
+
+            }else{
+                Toast.makeText(this.getContext(), "Número de personas mayor a lo debido", Toast.LENGTH_SHORT).show();
+            }
+
+        }else{
+            Toast.makeText(this.getContext(), "Requerido el número de adultos", Toast.LENGTH_SHORT).show();
+        }
+
 
     }
 
@@ -228,6 +331,17 @@ public class ReservaFragment extends Fragment implements View.OnClickListener {
                 showCalendar(dpFechaSalida);
             break;
 
+            case R.id.btnConfirmReserva:
+                createReserva();
+            break;
         }
     }
+
+    private void redirectTo(){
+
+        getParentFragmentManager().popBackStack();
+        getParentFragmentManager().popBackStack();
+
+    }
+
 }

@@ -60,7 +60,7 @@
 
     <!-- Profile Fragment -->
     <string name="btnEditar">Editar Perfil</string>
-    
+
     <!-- Fragment Reserva -->
     <string name="tagNroHabitacion">Habitación Nº</string>
     <string name="tagTipoHabitacion">Tipo Habitación</string>
@@ -68,8 +68,10 @@
     <string name="tagDetalleReserva">Detalles</string>
     <string name="tagEntrada">Entrada</string>
     <string name="tagSalida">Salida</string>
-    <string name="hintMaxAdultos">Num. adultos</string>
-    <string name="hintMaxNinos">Num. niños</string>
+    <!--<string name="hintMaxAdultos">Num. adultos</string>
+    <string name="hintMaxNinos">Num. niños</string>-->
+    <string name="defvalueAdultos">1</string>
+    <string name="defvalueNinos">0</string>
     <string name="tagAdultos">Adultos:</string>
     <string name="tagNinos">Niños:</string>
     <string name="btnCalendar">Calendario</string>
@@ -78,4 +80,12 @@
     <string name="tagFechaSalida">Fecha Salida</string>
     <string name="tagTotalPago">Pago Total:</string>
     <string name="phTvTotalPago">$0.00</string>
+
+    <!-- Fragment Mis Reservas -->
+    <string name="titleMisReservas">Reservas Realizadas</string>
+    <string name="tagHabitacionReservada">Habitación:</string>
+    <string name="tagPersonas">Personas:</string>
+    <string name="tagIngresoReserva">Ingreso:</string>
+    <string name="tagSalidaReserva">Salida:</string>
+    <string name="tagCostoTotal">Costo:</string>
 </resources>
