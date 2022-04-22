@@ -159,11 +159,11 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
 
 
         if (nume.length()  >= 11) {
-            etCedula.setError("Cedula fuera de rango");
+            etCedula.setError("Cédula fuera de rango");
             etCedula.requestFocus();
         } else {
             if (tele.length()  >= 11){
-                etTelefono.setError("Telefono fuera de rango");
+                etTelefono.setError("Teléfono fuera de rango");
                 etTelefono.requestFocus();
             }else{
                 updateData();

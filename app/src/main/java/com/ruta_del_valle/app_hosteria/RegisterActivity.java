@@ -51,11 +51,11 @@ public class RegisterActivity extends AppCompatActivity {
 
 
                 if (nume.length()  >= 11) {
-                    etDni.setError("Cedula fuera de rango");
+                    etDni.setError("Cédula fuera de rango");
                     etDni.requestFocus();
                 } else {
                     if (tele.length()  >= 11){
-                        etTelefono.setError("Telefono fuera de rango");
+                        etTelefono.setError("Teléfono fuera de rango");
                         etTelefono.requestFocus();
                     }else{
                         callRegisterService();
@@ -85,22 +85,22 @@ public class RegisterActivity extends AppCompatActivity {
         String password = etpassword.getText().toString();
 
         if (dni.isEmpty() ){
-            Toast.makeText(this.getApplicationContext(),"Campo cedula Vacio",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.getApplicationContext(),"Campo cédula vacío",Toast.LENGTH_SHORT).show();
         }else{
                 if (nombre.isEmpty()){
-                    Toast.makeText(this.getApplicationContext(),"Campo nombre Vacio",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this.getApplicationContext(),"Campo nombre vacío",Toast.LENGTH_SHORT).show();
                 }else{
                     if (email.isEmpty()){
-                        Toast.makeText(this.getApplicationContext(),"Campo email Vacio",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this.getApplicationContext(),"Campo email vacío",Toast.LENGTH_SHORT).show();
                     }else{
                         if (telefono.isEmpty() ){
-                            Toast.makeText(this.getApplicationContext(),"Campo telefono Vacio",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this.getApplicationContext(),"Campo teléfono vacío",Toast.LENGTH_SHORT).show();
                         }else{
                             if (username.isEmpty()){
-                                Toast.makeText(this.getApplicationContext(),"Campo username Vacio",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(this.getApplicationContext(),"Campo username vacío",Toast.LENGTH_SHORT).show();
                             }else{
                                 if (password.isEmpty()){
-                                    Toast.makeText(this.getApplicationContext(),"Campo password Vacio",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(this.getApplicationContext(),"Campo password vacío",Toast.LENGTH_SHORT).show();
                                 }else{
                                     NuevoUsuario nuevoUsuario = new NuevoUsuario(dni,nombre,email,telefono,username,password,"user");
                                     MyApiService myApiService = myApiAdapter.getApiService();
